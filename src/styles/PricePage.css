@@ -1,0 +1,85 @@
+/* src/styles/PricePage.css */
+
+/* Container for heading, price, and table */
+.heading_price_table-container {
+  display: flex;
+  flex-direction: column; /* Distributes space evenly between items */
+  align-items: center;
+  margin: 1% 0 2% 0;
+  width: 100%; /* Ensures the container spans the full width of the page */
+}
+
+.heading_price {
+  position: relative; /* Create a positioning context for the date and icon */
+  display: flex;
+  justify-content: center; /* Center heading content */
+  align-items: center; /* Center items vertically */
+  font-size: 1.5rem; /* Larger font size for emphasis */
+  font-weight: bold; /* Make the text bold */
+  color: #ffffff; 
+  background: linear-gradient(135deg,  #4b79a1, #283e51);
+  width: 65%;
+  margin-bottom: 5px;
+  padding: 10px; /* Add some padding */
+}
+
+/* Positioning the date and icon container */
+.date-icon-container {
+  position: absolute; /* Position absolutely within the heading */
+  right: 10px; /* Align to the right of the heading */
+  display: flex;
+  flex-direction: column; /* Stack date and icon vertically */
+  align-items: flex-start; /* Align items to the right */
+}
+
+.icon {
+  margin-top: 2px; /* Space between date and icon */
+  font-size: 1.2rem; /* Adjust font size of the icon if needed */
+}
+
+/* Table Styles */
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+}
+
+.centered-table {
+  border-collapse: collapse;
+  width: 100%; /* Ensures the table takes up the full width of its container */
+}
+
+.centered-table th,
+.centered-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+.centered-table th {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.centered-table tr:nth-child(even) {
+  background-color: #ebebeb; /* Light background color for even rows */
+}
+
+.centered-table tr:nth-child(odd) {
+  background-color: #ffffff; /* White background color for odd rows */
+}
+
+.centered-table tr:hover {
+  background-color: #bbc61d; /* Optional: Highlight row on hover */
+}
+
+@media (max-width: 768px) {
+  .heading_price, .table-container {
+    width: 95%; /* Expands to 95% width on smaller screens */
+  }
+
+  .heading_price {
+    font-size: 1.2rem; /* Adjust font size for better readability on small screens */
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+}

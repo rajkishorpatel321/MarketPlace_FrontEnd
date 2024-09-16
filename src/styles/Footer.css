@@ -1,0 +1,60 @@
+.footer {
+  background-color: #f8f6f6; /* Dark background color for the footer */
+  color: #050505; /* White text color */
+  padding:  0px 20px; /* Padding around the footer content */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow to separate footer from the content above */
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap; /* Ensures footer sections stack on smaller screens */
+  justify-content: space-between; /* Evenly space the footer sections */
+  max-width: 1200px; /* Max width for the footer content */
+  margin: auto; /* Center the content */
+}
+
+.footer-section {
+  flex: 1; /* Each section takes equal space */
+  margin: 20px; /* Spacing between sections */
+}
+
+.footer-section h2 {
+  font-size: 1.5rem; /* Slightly larger font for section titles */
+  margin-bottom: 20px; /* Space below section titles */
+}
+
+.footer-section p,
+.footer-section ul {
+  font-size: 1rem; /* Standard font size for text */
+  line-height: 1.6; /* Improve readability */
+}
+
+.footer-section ul {
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove padding */
+}
+
+.footer-section ul li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.footer-section ul li a {
+  color: #030303; /* Link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.footer-section ul li a:hover {
+  color: #ff416c; /* Change color on hover for emphasis */
+}
+
+.footer-bottom {
+  text-align: center; /* Center the bottom text */
+  padding: 20px 0; /* Padding for spacing */
+  border-top: 1px solid #444; /* Light border at the top of the bottom section */
+  /*margin-top: 20px; /* Space above the bottom section */
+  font-size: 0.9rem; /* Slightly smaller font for the bottom text */
+}

@@ -1,0 +1,100 @@
+/* CropPriceDataSave.css */
+
+/* Full-page container with margins */
+.form-container {
+  margin: 20px;
+  padding: 20px;
+  max-width: 1200px; /* Optional: to limit the maximum width */
+  margin: auto; /* Center the container */
+}
+
+/* Header container to align heading and date/calendar */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Space between heading and date/calendar */
+  align-items: center; /* Align items vertically in the center */
+  margin-bottom: 20px;
+}
+
+.header-container h1 {
+  margin: 0; /* Remove default margin */
+}
+
+.date-icon-container {
+  color: white;
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.current-date {
+  margin-right: 10px; /* Space between date and calendar icon */
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: relative; /* For positioning calendar popup */
+}
+
+/* Calendar popup styling */
+.calendar-popup {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  top: 100%; /* Position below the icon */
+  right: 0; /* Align calendar to the right */
+}
+
+/* Grid layout for form fields */
+.form-grid {
+  display: grid;
+  gap: 20px; /* Space between grid items */
+  grid-template-columns: 1fr; /* Single column by default */
+}
+
+/* Input group styles */
+.input-group {
+  display: grid;
+  gap: 20px; /* Space between input items */
+  grid-template-columns: repeat(4, 1fr); /* 4 columns layout for larger screens */
+}
+
+/* Ensure labels and inputs span full width */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between label text and input */
+}
+
+/* Submit button styling */
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* Single column for the entire form */
+  }
+
+  .input-group {
+    grid-template-columns: 1fr 1fr; /* 2 columns layout for inputs on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .input-group {
+    grid-template-columns: 1fr; /* Single column layout for very small screens */
+  }
+}

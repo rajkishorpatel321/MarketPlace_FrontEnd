@@ -1,0 +1,63 @@
+.containt {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Default: 4 columns of equal width */
+  gap: 20px; /* Space between the cards */
+  padding: 35px 40px; /* Padding from left and right */
+}
+
+/* Media Query for Large Screens (Desktops) */
+@media (max-width: 1200px) {
+  .containt {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium-large screens */
+  }
+}
+
+/* Media Query for Medium Screens (Tablets) */
+@media (max-width: 768px) {
+  .containt {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+}
+
+/* Media Query for Small Screens (Mobile Phones) */
+@media (max-width: 480px) {
+  .containt {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+    gap: 10px; /* Reduce gap for smaller screens */
+  }
+
+  .containt_card {
+    max-width: 100%; /* Ensure full width within the grid column */
+  }
+}
+
+.heading {
+  width: 100%;
+  font-size: 1.5rem; /* Larger font size for emphasis */
+  font-weight: bold; /* Make the text bold */
+  color: #ffffff; /* White text color for contrast */
+  text-align: center; /* Center-align the heading */
+  text-transform: uppercase; /* Convert the text to uppercase */
+  letter-spacing: 3px; /* Add spacing between letters for a modern look */
+  margin: 20px 0 0 0; /* Space above and below the heading */
+
+  /* 3D Text Effect */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), /* Slight shadow for depth */
+               4px 4px 10px rgba(0, 0, 0, 0.1); /* Stronger shadow for a 3D effect */
+
+  /* Background with Gradient */
+  background: linear-gradient(135deg,  #4b79a1, #283e51); /* Gradient background */
+  padding: 10px 20px; /* Padding around the text for better spacing */
+  border-radius: 10px; /* Rounded corners for a smooth look */
+  display: inline-block; /* Make the heading wrap around the text content */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow around the heading box */
+  cursor: default; /* Prevent cursor change on hover */
+  /* Animation on Hover */
+  /* transition: transform 0.3s ease, box-shadow 0.3s ease; Smooth transition for the hover effects */
+}
+
+/* .heading:hover {
+  transform: translateY(-5px); Move the heading slightly up for a 3D lift effect
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); Enhance the shadow to make the effect more pronounced
+} */
+

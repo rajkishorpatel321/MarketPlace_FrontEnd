@@ -1,0 +1,48 @@
+.card {
+  width: 100%; /* Default to 100% width to be responsive */
+  max-width: 15rem; /* Limit the max width to 15rem */
+  margin: 0 auto; /* Center the card */
+  background-color: #f8f9fa; /* Light background color for the card */
+  /* background-image: url('../Component/paddy.jpg'); /* Add your background image */
+  /* background-size: cover; Ensure the background image covers the entire card */ 
+  /* background-position: center; Center the background image */
+  border-radius: 0.5rem; /* Rounded corners for a smooth look */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.card-body {
+  padding: 1rem; /* Padding inside the card body */
+  text-align: center; /* Center the content */
+}
+
+.card-title {
+  font-size: 1.25rem; /* Font size for the card title */
+  font-weight: bold; /* Make the title bold */
+  color: #343a40; /* Dark color for the title */
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: translateY(-5px); /* Slightly lift the card on hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), 0 8px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Media Query for Small Screens (Mobile Phones) */
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%; /* Full width for mobile devices */
+    padding: 10px; /* Add some padding for mobile */
+  }
+
+  .card-title {
+    font-size: 1rem; /* Slightly smaller font size for mobile */
+  }
+}
+
+/* Media Query for Medium Screens (Tablets) */
+@media (max-width: 768px) {
+  .card {
+    max-width: 12rem; /* Adjust max width for tablets */
+  }
+}
