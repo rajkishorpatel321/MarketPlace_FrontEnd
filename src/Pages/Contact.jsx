@@ -3,8 +3,8 @@ import "../styles/ContactPage.css"; // Import the CSS file for styling src\style
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "Rajkishor Pate",
-    email: "rajkishorpatel321@gmail.com",
+    name: "Your Name",
+    phone: "phone no",
     message: "N.A.",
   });
 
@@ -43,11 +43,11 @@ const Contact = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="phone">Phone number:</label>
           <input
-            type="email"
-            id="email"
-            name="email"
+            type="text"
+            id="phone"
+            name="phone"
             value={formData.email}
             onChange={handleChange}
             required

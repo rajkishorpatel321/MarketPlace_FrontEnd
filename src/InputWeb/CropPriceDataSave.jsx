@@ -15,21 +15,42 @@ const CropPriceDataSave = () => {
   const { items = [], loading, error } = useSelector((state) => state.data);
   const marketPlace = useSelector((state) => state.MarketPlace);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     dropdown1: "",
-    cropData: items.map(() => ({
-      cropId: null,
-      LowestPrice: "",
-      HigestPrice: "",
-      Price: "",
-    })), // Initialize cropData based on items length
+    cropData: [], // Initialize cropData as an empty array
   });
+
+  const resetFormData = () => {
+    setFormData({
+      dropdown1: "",
+      cropData: formData.cropData.map(() => ({
+        LowestPrice: null,
+        HigestPrice: null,
+        Price: null,
+      })),
+    });
+  };
 
   useEffect(() => {
     dispatch(fetchData());
     dispatch(MarketPlaceData());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (items.length > 0) {
+      setFormData({
+        ...formData,
+        cropData: items.map(() => ({
+          cropId: null,
+          LowestPrice: "21",
+          HigestPrice: "21",
+          Price: "12",
+        })),
+      });
+    }
+  }, [items]);
 
   // Handle input changes for crop data
   const handleChange = (e, index, field) => {
@@ -57,6 +78,7 @@ const CropPriceDataSave = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     // Construct JSON object with the required format
     const jsonData = formData.cropData.map((data, index) => ({
       cropId: index + 1, // Assign cropId based on index
@@ -68,9 +90,9 @@ const CropPriceDataSave = () => {
     console.log("Form submitted with data:", jsonData);
 
     // Construct the API URL
-    const marketPlaceID = 1;
+    const marketPlaceID = marketPlaceList.indexOf(formData.dropdown1) + 1; // Updated line
     console.log(marketPlaceID);
-    const apiUrl = `http://localhost:8080/api/crop-prices/by-crop/name/${marketPlaceID}/on-date/${currentDate}`;
+    const apiUrl = `http://localhost:8080/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
 
     // Send the data to the backend
     try {
@@ -82,14 +104,24 @@ const CropPriceDataSave = () => {
         body: JSON.stringify(jsonData),
       });
 
+      resetFormData();
+      console.log(response.ok);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const result = await response.json();
-      console.log("Data successfully sent to the backend:", result);
+      // Check if the response body is not empty before parsing
+      const result = await response.text();
+      if (result) {
+        const jsonResult = JSON.parse(result);
+        console.log("Data successfully sent to the backend:", jsonResult);
+      } else {
+        console.log("No response body");
+      }
     } catch (error) {
       console.error("Error sending data to the backend:", error);
+    } finally {
+      setIsLoading(false); // Set loading to false
     }
   };
 
@@ -108,6 +140,7 @@ const CropPriceDataSave = () => {
     return `${year}-${month}-${day}`;
   };
 
+  if (isLoading) return <Loading />;
   if (loading) return <Loading />;
   if (error) return <div>Error: {error}</div>;
 
@@ -158,16 +191,19 @@ const CropPriceDataSave = () => {
                 <input
                   type="number"
                   placeholder="Lowest Price"
+                  value={formData.cropData[index]?.LowestPrice || ""} // Ensure value is set from state
                   onChange={(e) => handleChange(e, index, "LowestPrice")}
                 />
                 <input
                   type="number"
                   placeholder="Highest Price"
+                  value={formData.cropData[index]?.HigestPrice || ""} // Ensure value is set from state
                   onChange={(e) => handleChange(e, index, "HigestPrice")}
                 />
                 <input
                   type="number"
                   placeholder="Price"
+                  value={formData.cropData[index]?.Price || ""} // Ensure value is set from state
                   onChange={(e) => handleChange(e, index, "Price")}
                   required
                 />

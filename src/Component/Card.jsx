@@ -2,11 +2,16 @@ import React from "react";
 import "../styles/Card.css"; // Adjust the path according to your folder structure
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ name, id }) => {
+const Card = ({ name, id, mandi_location }) => {
   const navigate = useNavigate();
   const handalClicke = () => {
-    const data = { id: id, name: name };
-    navigate("/pricepage", { state: data });
+    if (location == null) {
+      const data = { id: id, name: name, mandi_location: null };
+      navigate("/pricepage", { state: data });
+    } else {
+      const data = { id: id, name: name, mandi_location: mandi_location };
+      navigate("/pricepage", { state: data });
+    }
   };
   return (
     <div className="card">
@@ -16,5 +21,4 @@ const Card = ({ name, id }) => {
     </div>
   );
 };
-
 export default Card;

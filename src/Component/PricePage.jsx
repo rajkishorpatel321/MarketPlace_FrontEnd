@@ -19,24 +19,44 @@ const PricePage = () => {
 
   const location = useLocation();
   const { state } = location;
-  const { id, name } = state || {};
-
-  useEffect(() => {
-    const fetchCrops = async () => {
-      setStatus("loading");
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`
-        );
-        setCrops(response.data);
-        setStatus("succeeded");
-      } catch (err) {
-        setError(err.message);
-        setStatus("failed");
-      }
-    };
-    fetchCrops();
-  }, [id, currentDate]);
+  const { id, name, mandi_location } = state || {};
+  if (mandi_location == null) {
+    useEffect(() => {
+      const fetchCrops = async () => {
+        setStatus("loading");
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`
+          );
+          setCrops(response.data);
+          console.log(crops);
+          setStatus("succeeded");
+        } catch (err) {
+          setError(err.message);
+          setStatus("failed");
+        }
+      };
+      fetchCrops();
+    }, [id, currentDate]);
+  } else {
+    useEffect(() => {
+      const fetchCrops = async () => {
+        setStatus("loading");
+        try {
+          const response = await axios.get(
+            // http://localhost:8080/api/marketplace/by-marketplace/1/on-date/2024-09-11
+            `http://localhost:8080/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
+          );
+          setCrops(response.data);
+          setStatus("succeeded");
+        } catch (err) {
+          setError(err.message);
+          setStatus("failed");
+        }
+      };
+      fetchCrops();
+    }, [id, currentDate]);
+  }
 
   const handleDateChange = (date) => {
     const formattedDate = formatDate(date);
@@ -74,26 +94,53 @@ const PricePage = () => {
         </span>
       </div>
       <div className="table-container">
-        <table className="centered-table">
-          <thead>
-            <tr>
-              <th>Market Place</th>
-              <th>Price</th>
-              <th>Date</th>
-              <th>Column 4</th>
-            </tr>
-          </thead>
-          <tbody>
-            {crops.map((item, index) => (
-              <tr key={index}>
-                <td>{item.marketplaceName}</td>
-                <td>{item.price}</td>
-                <td>{item.date}</td>
-                <td>Row {index + 1} - Col 4</td>
+        {mandi_location == null ? (
+          <table className="centered-table">
+            <thead>
+              <tr>
+                <th>Market Place</th>
+                <th>Lowest Price</th>
+                <th>Higest Price</th>
+                <th>Modal Price</th>
+                <th>Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {crops.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.marketplaceName}</td>
+                  <td>{item.priceLowest}</td>
+                  <td>{item.priceHighest}</td>
+                  <td>{item.price}</td>
+                  <td>{item.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <table className="centered-table">
+            <thead>
+              <tr>
+                <th>Crop Name</th>
+                <th>Lowest Price</th>
+                <th>Higest Price</th>
+                <th>Modal Price</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {crops.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.cropName}</td>
+                  <td>{item.priceLowest}</td>
+                  <td>{item.priceHighest}</td>
+                  <td>{item.price}</td>
+                  <td>{item.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

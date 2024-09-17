@@ -29,7 +29,11 @@ const MarketPlaceComponent = () => {
       <div className="containt">
         {items.map((item, index) => (
           <div className="containt_card" key={index}>
-            <Card name={item.location} id={item.marketplaceId} />
+            <Card
+              mandi_location={item.location}
+              id={item.marketplaceId}
+              name={item.marketplaceName}
+            />
           </div>
         ))}
       </div>

@@ -21,7 +21,7 @@
 }
 
 .date-icon-container {
-  color: white;
+  color: white  ;
   display: flex;
   align-items: center; /* Align items vertically in the center */
 }
@@ -94,7 +94,11 @@ button {
 }
 
 @media (max-width: 480px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* Single column for the entire form */
+  }
+
   .input-group {
-    grid-template-columns: 1fr; /* Single column layout for very small screens */
+    grid-template-columns: 1fr 1fr; /* 2 columns layout for inputs on smaller screens */
   }
 }
