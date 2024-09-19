@@ -44,7 +44,6 @@ const PricePage = () => {
         setStatus("loading");
         try {
           const response = await axios.get(
-            // http://localhost:8080/api/marketplace/by-marketplace/1/on-date/2024-09-11
             `http://localhost:8080/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
           );
           setCrops(response.data);
@@ -98,11 +97,11 @@ const PricePage = () => {
           <table className="centered-table">
             <thead>
               <tr>
-                <th>Market Place</th>
-                <th>Lowest Price</th>
-                <th>Higest Price</th>
-                <th>Modal Price</th>
-                <th>Date</th>
+                <th>मंडी</th>
+                <th>न्यूनतम मूल्य</th>
+                <th>अधिकतम मूल्य</th>
+                <th>मॉडल मूल्य</th>
+                <th>दिनांक</th>
               </tr>
             </thead>
             <tbody>
@@ -147,3 +146,109 @@ const PricePage = () => {
 };
 
 export default PricePage;
+
+// import React, { useState, useEffect } from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { FaCalendarAlt } from "react-icons/fa";
+// import Calendar from "react-calendar";
+// import "react-calendar/dist/Calendar.css";
+// import { setDate } from "../Store/CurrentDateSlice";
+// import Loading from "../Pages/Loading";
+// import "../styles/PricePage.css";
+
+// import { fetchCrops, formatDate, handleDateChange } from "./PricePageLogic";
+// import { useLocation } from "react-router-dom";
+
+// const PricePage = () => {
+//   const dispatch = useDispatch();
+//   const currentDate = useSelector((state) => state.date.value);
+//   const [showCalendar, setShowCalendar] = useState(false);
+//   const [crops, setCrops] = useState([]);
+//   const [status, setStatus] = useState("idle");
+//   const [error, setError] = useState(null);
+
+//   const location = useLocation();
+//   const { state } = location;
+//   const { id, name, mandi_location } = state || {};
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       setStatus("loading");
+//       try {
+//         const fetchedCrops = await fetchCrops(id, currentDate, mandi_location);
+//         setCrops(fetchedCrops);
+//         setStatus("succeeded");
+//       } catch (err) {
+//         setError(err.message);
+//         setStatus("failed");
+//       }
+//     };
+//     fetchData();
+//   }, [id, currentDate, mandi_location]);
+
+//   // Handling calendar date change
+//   const handleCalendarChange = (date) => {
+//     handleDateChange(date, dispatch);
+//   };
+
+//   return (
+//     <div className="heading_price_table-container">
+//       <div className="heading_price">
+//         <h1>{name}</h1>
+//         <span className="date-icon-container">
+//           <span>{currentDate}</span>
+//           <div className="icon" onClick={() => setShowCalendar(!showCalendar)}>
+//             <FaCalendarAlt />
+//           </div>
+//           {showCalendar && (
+//             <div className="calendar-popup">
+//               <Calendar
+//                 onChange={handleCalendarChange}
+//                 value={new Date(currentDate)}
+//               />
+//             </div>
+//           )}
+//         </span>
+//       </div>
+//       {status === "loading" && <Loading />}
+//       {status === "failed" && <p>Error: {error}</p>}
+//       {status === "succeeded" && (
+//         <div className="table-container">
+//           {crops.length === 0 ? (
+//             <div className="container_warning">
+//               <p>Please select another date, no data for this date</p>
+//               <div>For selecting data, click on the calendar icon</div>
+//             </div>
+//           ) : (
+//             <table className="centered-table">
+//               <thead>
+//                 <tr>
+//                   <th>{mandi_location ? "Crop Name" : "Market Place"}</th>
+//                   <th>Lowest Price</th>
+//                   <th>Highest Price</th>
+//                   <th>Modal Price</th>
+//                   <th>Date</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {crops.map((item, index) => (
+//                   <tr key={index}>
+//                     <td>
+//                       {mandi_location ? item.cropName : item.marketplaceName}
+//                     </td>
+//                     <td>{item.priceLowest}</td>
+//                     <td>{item.priceHighest}</td>
+//                     <td>{item.price}</td>
+//                     <td>{item.date}</td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           )}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default PricePage;

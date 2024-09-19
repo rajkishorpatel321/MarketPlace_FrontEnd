@@ -10,6 +10,7 @@
 
 /* Header container to align heading and date/calendar */
 .header-container {
+  color: white;
   display: flex;
   justify-content: space-between; /* Space between heading and date/calendar */
   align-items: center; /* Align items vertically in the center */

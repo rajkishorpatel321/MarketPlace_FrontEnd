@@ -42,11 +42,11 @@ const CropPriceDataSave = () => {
     if (items.length > 0) {
       setFormData({
         ...formData,
-        cropData: items.map(() => ({
+        cropData: items.map((item) => ({
           cropId: null,
-          LowestPrice: "21",
-          HigestPrice: "21",
-          Price: "12",
+          LowestPrice: item.LowestPrice,
+          HigestPrice: item.priceHighest,
+          Price: item.price,
         })),
       });
     }
@@ -55,7 +55,7 @@ const CropPriceDataSave = () => {
   // Handle input changes for crop data
   const handleChange = (e, index, field) => {
     const { value } = e.target;
-    // Update the specific crop data at the given index
+    // console.log(value);
     const updatedCropData = formData.cropData.map((crop, i) =>
       i === index ? { ...crop, [field]: value } : crop
     );
@@ -66,15 +66,64 @@ const CropPriceDataSave = () => {
     });
   };
 
+  const fetchExistingData = async (
+    marketPlaceID,
+    selectedDate,
+    marketPlaceValue
+  ) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `http://localhost:8080/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error("No existing data found.");
+      }
+
+      const existingData = await response.json();
+      // Populate form with existing data
+      console.log(existingData);
+
+      if (existingData && existingData.length > 0) {
+        console.log("saving data");
+        setFormData({
+          ...formData,
+          dropdown1: marketPlaceValue,
+          cropData: existingData.map((item) => ({
+            LowestPrice: item.priceLowest,
+            HigestPrice: item.priceHighest,
+            Price: item.price,
+          })),
+        });
+      } else {
+        resetFormData();
+        setFormData({
+          ...formData,
+          dropdown1: marketPlaceValue,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      resetFormData();
+    } finally {
+      setIsLoading(false);
+    }
+  };
   // Handle dropdown change
   const handleDropdownChange = (e) => {
-    console.log(e.target.value);
-    setFormData({
-      ...formData,
-      dropdown1: e.target.value,
-    });
+    console.log(e.target);
+    const marketPlaceID = marketPlaceList.indexOf(e.target.value) + 1;
+    console.log(marketPlaceID);
+    fetchExistingData(marketPlaceID, currentDate, e.target.value);
   };
 
+  const validateDate = (dateStr) => {
+    // Validate the date format using moment.js
+    const currentDate = moment();
+    const inputDate = moment(dateStr);
+    return inputDate.isSameOrBefore(currentDate);
+  };
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -91,7 +140,7 @@ const CropPriceDataSave = () => {
 
     // Construct the API URL
     const marketPlaceID = marketPlaceList.indexOf(formData.dropdown1) + 1; // Updated line
-    console.log(marketPlaceID);
+    // console.log(marketPlaceID);
     const apiUrl = `http://localhost:8080/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
 
     // Send the data to the backend
@@ -110,11 +159,10 @@ const CropPriceDataSave = () => {
         throw new Error("Network response was not ok");
       }
 
-      // Check if the response body is not empty before parsing
       const result = await response.text();
-      if (result) {
-        const jsonResult = JSON.parse(result);
-        console.log("Data successfully sent to the backend:", jsonResult);
+      console.log(result);
+      if (result != null) {
+        console.log("Data successfully sent to the backend:", result);
       } else {
         console.log("No response body");
       }
@@ -146,11 +194,10 @@ const CropPriceDataSave = () => {
 
   const dropdownOptions1 = items.map((item) => item.cropName);
   const marketPlaceList = marketPlace.items.map((item) => item.location);
-
   return (
     <div className="form-container">
       <div className="header-container">
-        <h1>CropPrice</h1>
+        <h1>फसल के मूल्य </h1>
         <div className="date-icon-container">
           <span className="current-date">{currentDate}</span>
           <div className="icon" onClick={() => setShowCalendar(!showCalendar)}>
@@ -168,7 +215,7 @@ const CropPriceDataSave = () => {
       </div>
       <form onSubmit={handleSubmit} className="form-grid">
         <label>
-          Market Place Name
+          मंडी चुने
           <select
             name="dropdown1"
             value={formData.dropdown1}

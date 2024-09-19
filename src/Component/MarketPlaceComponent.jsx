@@ -25,7 +25,7 @@ const MarketPlaceComponent = () => {
   if (error) return <div>Error: {error}</div>;
   return (
     <>
-      <h1 className="heading">MarketPlace के अनुसार मूल्य</h1>
+      <h1 className="heading">मंडी के अनुसार मूल्य</h1>
       <div className="containt">
         {items.map((item, index) => (
           <div className="containt_card" key={index}>

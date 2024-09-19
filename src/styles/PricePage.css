@@ -83,3 +83,21 @@
     padding: 8px; /* Adjust padding for smaller screens */
   }
 }
+
+.container_warning {
+  margin: 5%;
+  padding: 20px;
+  border: 2px solid #000; /* Optional: Add a border to make it more vibrant */
+  background-color: #f0f8ff; /* Optional: Light blue background for vibrancy */
+  color: #333; /* Text color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.container_warning p {
+  margin: 0 0 10px 0; /* Margin between the paragraph and the div */
+}
+
+.container_warning div {
+  margin-top: 10px; /* Margin above the div */
+}
