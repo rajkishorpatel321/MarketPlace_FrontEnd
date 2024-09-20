@@ -54,6 +54,7 @@
 .centered-table td {
   padding: 8px;
   text-align: center;
+  font-weight: 650;
 }
 
 .centered-table th {
@@ -101,3 +102,16 @@
 .container_warning div {
   margin-top: 10px; /* Margin above the div */
 }
+.info-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: auto;           /* Center the box horizontally */
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  width: fit-content;     /* Shrink the box to fit content */
+  height: fit-content;  
+} 

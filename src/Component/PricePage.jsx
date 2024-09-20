@@ -72,7 +72,6 @@ const PricePage = () => {
 
   if (status === "loading") return <Loading />;
   if (status === "failed") return <p>Error: {error}</p>;
-
   return (
     <div className="heading_price_table-container">
       <div className="heading_price">
@@ -94,28 +93,48 @@ const PricePage = () => {
       </div>
       <div className="table-container">
         {mandi_location == null ? (
-          <table className="centered-table">
-            <thead>
-              <tr>
-                <th>मंडी</th>
-                <th>न्यूनतम मूल्य</th>
-                <th>अधिकतम मूल्य</th>
-                <th>मॉडल मूल्य</th>
-                <th>दिनांक</th>
-              </tr>
-            </thead>
-            <tbody>
-              {crops.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.marketplaceName}</td>
-                  <td>{item.priceLowest}</td>
-                  <td>{item.priceHighest}</td>
-                  <td>{item.price}</td>
-                  <td>{item.date}</td>
+          crops.length === 0 ? (
+            <div className="container_warning">
+              <p>Please select another date, no data for this date</p>
+              <div>For selecting data, click on the calendar icon</div>
+            </div>
+          ) : (
+            <table className="centered-table">
+              <thead>
+                <tr>
+                  <th>मंडी</th>
+                  <th>न्यूनतम मूल्य</th>
+                  <th>अधिकतम मूल्य</th>
+                  <th>मॉडल मूल्य</th>
+                  <th>दिनांक</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {crops.map((item, index) => (
+                  <tr key={index}>
+                    <td>
+                      {item.marketplaceName == null
+                        ? "nill"
+                        : item.marketplaceName}
+                    </td>
+                    <td>
+                      {item.priceLowest == null ? "NILL" : item.priceLowest}
+                    </td>
+                    <td>
+                      {item.priceHighest == null ? "NILL" : item.priceHighest}
+                    </td>
+                    <td>{item.price == null ? "NILL" : item.price}</td>
+                    <td>{item.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )
+        ) : crops.length === 0 ? (
+          <div className="container_warning">
+            <p>Please select another date, no data for this date</p>
+            <div>For selecting data, click on the calendar icon</div>
+          </div>
         ) : (
           <table className="centered-table">
             <thead>
@@ -130,10 +149,14 @@ const PricePage = () => {
             <tbody>
               {crops.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.cropName}</td>
-                  <td>{item.priceLowest}</td>
-                  <td>{item.priceHighest}</td>
-                  <td>{item.price}</td>
+                  <td>{item.cropName == null ? "NILL" : item.cropName}</td>
+                  <td>
+                    {item.priceLowest == null ? "NILL" : item.priceLowest}
+                  </td>
+                  <td>
+                    {item.priceHighest == null ? "NILL" : item.priceHighest}
+                  </td>
+                  <td>{item.price == null ? "NILL" : item.price}</td>
                   <td>{item.date}</td>
                 </tr>
               ))}
