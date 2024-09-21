@@ -74,7 +74,7 @@ const CropPriceDataSave = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `http://localhost:8080/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
+        `https://tpcropprice.as.r.appspot.com/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
       );
 
       if (!response.ok) {
@@ -141,7 +141,7 @@ const CropPriceDataSave = () => {
     // Construct the API URL
     const marketPlaceID = marketPlaceList.indexOf(formData.dropdown1) + 1; // Updated line
     // console.log(marketPlaceID);
-    const apiUrl = `http://localhost:8080/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
+    const apiUrl = `https://tpcropprice.as.r.appspot.com/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
 
     // Send the data to the backend
     try {

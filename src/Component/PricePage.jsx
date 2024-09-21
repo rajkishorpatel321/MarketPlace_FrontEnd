@@ -26,7 +26,7 @@ const PricePage = () => {
         setStatus("loading");
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`
+            `https://tpcropprice.as.r.appspot.com/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`
           );
           setCrops(response.data);
           console.log(crops);
@@ -44,7 +44,7 @@ const PricePage = () => {
         setStatus("loading");
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
+            `https://tpcropprice.as.r.appspot.com/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
           );
           setCrops(response.data);
           setStatus("succeeded");

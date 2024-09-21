@@ -5,7 +5,7 @@ export const MarketPlaceData = createAsyncThunk(
   "marketPlace/fetchData", // Action type
   async () => {
     const response = await fetch(
-      "http://localhost:8080/api/marketplace/getAllMarketPlace"
+      "https://tpcropprice.as.r.appspot.com/api/marketplace/getAllMarketPlace"
     ); // Replace with your actual API endpoint
     const data = await response.json();
     return data; // Return the data from the API
