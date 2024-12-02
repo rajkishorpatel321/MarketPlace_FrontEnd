@@ -1,10 +1,10 @@
 // src/features/dataSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import {API_URL} from './utils.JS'
 // Create an async thunk for fetching data from the API
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
   const response = await fetch(
-    "https://tpcropprice.as.r.appspot.com/api/crops/getAllCrop"
+    API_URL+"/api/crops/getAllCrop"
   ); // Replace with your actual API endpoint
   const data = await response.json();
   return data; // Return the data from the API

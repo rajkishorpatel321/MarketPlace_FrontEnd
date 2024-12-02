@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className="header-container">
       <div className="logo-container">
-        <h1 className="logo-text">MyWebsite</h1>
+        <h1 className="logo-text">कृषि साथी</h1>
       </div>
       <nav className="nav-menu">
         <a href="/" className="nav-link">

@@ -8,6 +8,7 @@ import "react-calendar/dist/Calendar.css";
 import { setDate } from "../Store/CurrentDateSlice";
 import Loading from "../Pages/Loading";
 import "../styles/PricePage.css";
+import {API_URL} from '../Store/utils.JS'
 
 const PricePage = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const PricePage = () => {
         setStatus("loading");
         try {
           const response = await axios.get(
-            `https://tpcropprice.as.r.appspot.com/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`
+            API_URL+`/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`
           );
           setCrops(response.data);
           console.log(crops);
@@ -44,7 +45,7 @@ const PricePage = () => {
         setStatus("loading");
         try {
           const response = await axios.get(
-            `https://tpcropprice.as.r.appspot.com/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
+            API_URL+`/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
           );
           setCrops(response.data);
           setStatus("succeeded");

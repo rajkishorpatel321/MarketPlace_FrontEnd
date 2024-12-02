@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {API_URL} from './utils.JS'
 
 // Define the async thunk for fetching data
 export const MarketPlaceData = createAsyncThunk(
   "marketPlace/fetchData", // Action type
   async () => {
+    console.log("+++++++++++++"+API_URL)
     const response = await fetch(
-      "https://tpcropprice.as.r.appspot.com/api/marketplace/getAllMarketPlace"
+      API_URL+"/api/marketplace/getAllMarketPlace"
     ); // Replace with your actual API endpoint
     const data = await response.json();
     return data; // Return the data from the API
