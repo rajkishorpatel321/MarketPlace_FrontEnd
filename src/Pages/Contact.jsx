@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/ContactPage.css"; // Import the CSS file for styling src\styles\ContactPage.css
+import "../styles/ContactPage.css"; 
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add form submission logic here (e.g., send data to an API)
     console.log("Form submitted:", formData);
     alert("Thank you for your message! We will get back to you soon.");
     setFormData({ name: "", email: "", message: "" }); // Reset the form

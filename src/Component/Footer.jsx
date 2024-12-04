@@ -31,12 +31,12 @@ const Footer = () => {
         </div>
         <div className="footer-section contact">
           <h2>Contact Us</h2>
-          <p>Email: support@website.com</p>
-          <p>Phone: +123 456 7890</p>
+          <p>Email: test@gmail.com</p>
+          <p>Phone: +91 8103719631</p>
         </div>
       </div>
       <div className="footer-bottom">
-        &copy; 2024 YourCompanyName | Designed by Rajkishor
+        &copy; 2024 कृषि साथी | Designed by KC Team
       </div>
     </footer>
   );

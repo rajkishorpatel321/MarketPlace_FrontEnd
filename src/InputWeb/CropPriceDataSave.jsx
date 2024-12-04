@@ -8,6 +8,7 @@ import Loading from "../Pages/Loading";
 import { FaCalendarAlt } from "react-icons/fa";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import {API_URL} from '../Store/utils.JS';
 
 const CropPriceDataSave = () => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const CropPriceDataSave = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `https://tpcropprice.as.r.appspot.com/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
+        API_URL+`/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
       );
 
       if (!response.ok) {
@@ -141,7 +142,7 @@ const CropPriceDataSave = () => {
     // Construct the API URL
     const marketPlaceID = marketPlaceList.indexOf(formData.dropdown1) + 1; // Updated line
     // console.log(marketPlaceID);
-    const apiUrl = `https://tpcropprice.as.r.appspot.com/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
+    const apiUrl = API_URL+`/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
 
     // Send the data to the backend
     try {
@@ -252,7 +253,6 @@ const CropPriceDataSave = () => {
                   placeholder="Price"
                   value={formData.cropData[index]?.Price || ""} // Ensure value is set from state
                   onChange={(e) => handleChange(e, index, "Price")}
-                  required
                 />
               </label>
             </div>

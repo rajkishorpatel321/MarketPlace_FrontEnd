@@ -1,4 +1,5 @@
 import axios from "axios";
+import {API_URL} from '../Store/utils.JS';
 
 export const CropPriceDataSaveLogic = ({
   items,
@@ -47,7 +48,7 @@ export const CropPriceDataSaveLogic = ({
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
+        API_URL+`/api/marketplace/by-marketplace/${marketPlaceID}/on-date/${selectedDate}`
       );
 
       if (!response.ok) {
@@ -95,7 +96,7 @@ export const CropPriceDataSaveLogic = ({
     }));
 
     const marketPlaceID = marketPlaceList.indexOf(formData.dropdown1) + 1;
-    const apiUrl = `http://localhost:8080/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
+    const apiUrl = API_URL+`/api/crop-prices/save/${marketPlaceID}/on-date/${currentDate}`;
 
     try {
       const response = await fetch(apiUrl, {

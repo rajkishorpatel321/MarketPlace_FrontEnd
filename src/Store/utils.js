@@ -1,1 +1,1 @@
-export const API_URL ="https://www.krshisathinow.xyz";
+export const API_URL ="https://marketplacebackend-production.up.railway.app";

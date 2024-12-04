@@ -5,11 +5,11 @@ import {API_URL} from './utils.JS'
 export const MarketPlaceData = createAsyncThunk(
   "marketPlace/fetchData", // Action type
   async () => {
-    console.log("+++++++++++++"+API_URL)
     const response = await fetch(
       API_URL+"/api/marketplace/getAllMarketPlace"
     ); // Replace with your actual API endpoint
     const data = await response.json();
+    console.log(data);
     return data; // Return the data from the API
   }
 );

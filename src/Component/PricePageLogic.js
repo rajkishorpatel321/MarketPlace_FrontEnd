@@ -1,10 +1,10 @@
 import axios from "axios";
-
+import {API_URL} from '../Store/utils.JS'
 const fetchCrops = async (id, currentDate, mandi_location) => {
   try {
     const url = mandi_location
-      ? `http://localhost:8080/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
-      : `http://localhost:8080/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`;
+      ? API_URL+`/api/marketplace/by-marketplace/${id}/on-date/${currentDate}`
+      : API_URL+`/api/crop-prices/by-crop/name/${id}/on-date/${currentDate}`;
 
     const response = await axios.get(url);
     return response.data;

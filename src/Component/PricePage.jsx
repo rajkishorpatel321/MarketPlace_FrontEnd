@@ -111,23 +111,17 @@ const PricePage = () => {
                 </tr>
               </thead>
               <tbody>
-                {crops.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      {item.marketplaceName == null
-                        ? "nill"
-                        : item.marketplaceName}
-                    </td>
-                    <td>
-                      {item.priceLowest == null ? "NILL" : item.priceLowest}
-                    </td>
-                    <td>
-                      {item.priceHighest == null ? "NILL" : item.priceHighest}
-                    </td>
-                    <td>{item.price == null ? "NILL" : item.price}</td>
-                    <td>{item.date}</td>
-                  </tr>
-                ))}
+              {crops
+  .filter(item => item.price === null || item.price >= 11) // Filter crops with price >= 10 or null
+  .map((item, index) => (
+    <tr key={index}>
+      <td>{item.cropName == null ? "NILL" : item.cropName}</td>
+      <td>{item.priceLowest == null ? "NILL" : item.priceLowest}</td>
+      <td>{item.priceHighest == null ? "NILL" : item.priceHighest}</td>
+      <td>{item.price == null ? "NILL" : item.price}</td>
+      <td>{item.date}</td>
+    </tr>
+  ))}
               </tbody>
             </table>
           )
@@ -148,19 +142,17 @@ const PricePage = () => {
               </tr>
             </thead>
             <tbody>
-              {crops.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.cropName == null ? "NILL" : item.cropName}</td>
-                  <td>
-                    {item.priceLowest == null ? "NILL" : item.priceLowest}
-                  </td>
-                  <td>
-                    {item.priceHighest == null ? "NILL" : item.priceHighest}
-                  </td>
-                  <td>{item.price == null ? "NILL" : item.price}</td>
-                  <td>{item.date}</td>
-                </tr>
-              ))}
+            {crops
+  .filter(item => item.price === null || item.price >= 11) // Filter crops with price >= 10 or null
+  .map((item, index) => (
+    <tr key={index}>
+      <td>{item.cropName == null ? "NILL" : item.cropName}</td>
+      <td>{item.priceLowest == null ? "NILL" : item.priceLowest}</td>
+      <td>{item.priceHighest == null ? "NILL" : item.priceHighest}</td>
+      <td>{item.price == null ? "NILL" : item.price}</td>
+      <td>{item.date}</td>
+    </tr>
+  ))}
             </tbody>
           </table>
         )}
